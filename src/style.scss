@@ -1,6 +1,13 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
 body {
     background-image: url('./night-wallpaper.jpg');
     background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white
 }
 
 header {
@@ -15,7 +22,7 @@ nav {
     
 }
 
-div {
+.searchBar {
     border-bottom: 2px solid white;
     width: 30vw;
     height: 5vh;
@@ -27,7 +34,11 @@ div {
     align-items: center;
 }
 
-img {
+button {
+    background-color: transparent;
+    border: none;
+}
+.search {
     width: 40px;
     height: 40px;
 }
@@ -51,7 +62,30 @@ input[type="text"]:focus {
 
 }
 
+main > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
+    padding: 4rem;
+}
+
+.current {
+    
+}
+
+h2 {
+    color: white;
+    font-size: 3rem;
+    
+}
+h3 {
+    font-size: 2.5rem;
+}
+
+p {
+    font-size: 2rem;
+}
 
 
 
