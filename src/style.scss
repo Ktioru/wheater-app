@@ -1,0 +1,59 @@
+body {
+    background-image: url('./night-wallpaper.jpg');
+    background-size: cover;
+}
+
+header {
+    
+
+}
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+div {
+    border-bottom: 2px solid white;
+    width: 30vw;
+    height: 5vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+}
+
+
+
+input[type="text"] {
+    background: transparent;
+    width: 90%;
+    height: 100%;
+    border: 0;
+    
+    
+
+    font-size: 1.75rem;
+    color: white;
+}
+input[type="text"]:focus {
+    outline: none;
+
+
+}
+
+
+
+
+
+
+
