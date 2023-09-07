@@ -12,17 +12,32 @@ const hour = document.querySelector('.hour');
 
 const condition = document.querySelector('.condition');
 
-const img = document.querySelector('img');
+const img = document.querySelector('.img');
+
+const feelsAs = document.querySelector('.feelsLike');
+
+const humidity = document.querySelector('.humidity');
+
+const wind = document.querySelector('.wind');
 
 async function getWeather(city = 'london') {
   const api = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=1c011dc02b6746dea45210523230209&q=${city.toLowerCase()}`);
   const response = await api.json();
   const weather = {
     name: response.location.name,
-    currentTemp: response.current.temp_c,
+    currentTemp: {
+      c: response.current.temp_c,
+      f: response.current.temp_f,
+    },
     condition: response.current.condition.text,
     icon: response.current.condition.icon,
     date: response.location.localtime,
+    feelsLike: {
+      c: response.current.feelslike_c,
+      f: response.current.feelslike_f,
+    },
+    humidity: response.current.humidity,
+    windSpeed: response.current.wind_kph,
 
     tomorrowTemp: response.forecast.forecastday[0].day.avgtemp_c,
   };
@@ -33,8 +48,8 @@ function registerName(data) {
   cityName.innerText = data.name;
 }
 
-function registerTemperature(data) {
-  temperature.innerText = `${data.currentTemp}°C`;
+function registerTemperature(data, metric = 'c') {
+  temperature.innerText = `${data.currentTemp[metric]}°${metric.toUpperCase()}`;
 }
 
 function registerDate(date) {
@@ -52,7 +67,7 @@ function registerHour(date) {
   if (date.getHours() >= 13) {
     pageHour = date.getHours() - 12;
     mid = 'pm';
-  } else if (date.getHours === 0) {
+  } else if (date.getHours() === 0) {
     pageHour = 12;
     mid = 'am';
   } else {
@@ -63,6 +78,26 @@ function registerHour(date) {
   hour.innerText = `${pageHour}:${date.getMinutes()} ${mid}`;
 }
 
+function registerCondition(data) {
+  condition.innerText = data.condition;
+}
+
+function registerImage(data) {
+  console.log(data.icon);
+  img.src = `http:${data.icon}`;
+  img.style.width = '100px';
+  img.style.height = '100px';
+}
+
+function registerFeelsLike(data, metric = 'c') {
+  feelsAs.innerText = `${data.feelsLike[metric]}°${metric.toUpperCase()}`;
+}
+function registerHumidity(data) {
+  humidity.innerText = `${data.humidity}%`;
+}
+function registerWind(data) {
+  wind.innerText = `${data.windSpeed} kph`;
+}
 async function registerCity(fCity) {
   const data = await getWeather(fCity);
 
@@ -72,9 +107,15 @@ async function registerCity(fCity) {
   const date = new Date(data.date);
   registerDate(date);
   registerHour(date);
+  registerCondition(data);
+  registerImage(data);
+  registerFeelsLike(data);
+  registerHumidity(data);
+  registerWind(data);
 
-  condition.innerText = data.condition;
-  console.log('dwadwadaw12312312aawewqewqddweqwewqadwawadwaaw');
+  console.log('dwadwadaw123123321321311wadawwad2adeq2e2qsaasdaawewqewqddweqwewqadwawadwaaw');
 }
 
 search.addEventListener('click', () => registerCity(town.value));
+
+registerCity('london');

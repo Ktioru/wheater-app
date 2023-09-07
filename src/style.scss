@@ -12,54 +12,48 @@ body {
 
 header {
     
-
-}
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .searchBar {
+            border-bottom: 2px solid white;
+            width: 30vw;
+            height: 5vh;
+        
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        
+            align-items: center;
+            button {
+                background-color: transparent;
+                border: none;
+                .search {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+            input[type="text"] {
+                background: transparent;
+                width: 90%;
+                height: 100%;
+                border: 0;
+                
+                
+            
+                font-size: 1.75rem;
+                color: white;
+            }
+            input[type="text"]:focus {
+                outline: none;
+            
+            
+            }
+        }
     
-}
-
-.searchBar {
-    border-bottom: 2px solid white;
-    width: 30vw;
-    height: 5vh;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    align-items: center;
-}
-
-button {
-    background-color: transparent;
-    border: none;
-}
-.search {
-    width: 40px;
-    height: 40px;
-}
-
-
-
-input[type="text"] {
-    background: transparent;
-    width: 90%;
-    height: 100%;
-    border: 0;
-    
-    
-
-    font-size: 1.75rem;
-    color: white;
-}
-input[type="text"]:focus {
-    outline: none;
-
-
+        
+    }
 }
 
 main > div {
@@ -71,6 +65,18 @@ main > div {
 }
 
 .current {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    
+    
+}
+
+.someData {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     
 }
 
@@ -86,7 +92,6 @@ h3 {
 p {
     font-size: 2rem;
 }
-
 
 
 
