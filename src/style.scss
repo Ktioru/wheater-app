@@ -1,6 +1,6 @@
 * {
-    box-sizing: border-box;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -14,8 +14,10 @@ header {
     
     nav {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 4px;
         .searchBar {
             border-bottom: 2px solid white;
             width: 30vw;
@@ -26,6 +28,8 @@ header {
             justify-content: space-between;
         
             align-items: center;
+
+            margin: 2rem;
             button {
                 background-color: transparent;
                 border: none;
@@ -51,17 +55,21 @@ header {
             
             }
         }
-    
+        p {
+            visibility: hidden;
+        }
         
     }
 }
-
+main {
+   
+}
 main > div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
-    padding: 4rem;
+    margin: 4rem;
 }
 
 .current {

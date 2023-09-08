@@ -20,6 +20,12 @@ const humidity = document.querySelector('.humidity');
 
 const wind = document.querySelector('.wind');
 
+const error = document.querySelector('.error');
+
+const changeValue = document.querySelector('.changed');
+
+const defaultMetric = 'c';
+
 async function getWeather(city = 'london') {
   const api = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=1c011dc02b6746dea45210523230209&q=${city.toLowerCase()}`);
   const response = await api.json();
@@ -41,6 +47,7 @@ async function getWeather(city = 'london') {
 
     tomorrowTemp: response.forecast.forecastday[0].day.avgtemp_c,
   };
+
   return weather;
 }
 
@@ -83,7 +90,6 @@ function registerCondition(data) {
 }
 
 function registerImage(data) {
-  console.log(data.icon);
   img.src = `http:${data.icon}`;
   img.style.width = '100px';
   img.style.height = '100px';
@@ -98,10 +104,14 @@ function registerHumidity(data) {
 function registerWind(data) {
   wind.innerText = `${data.windSpeed} kph`;
 }
-async function registerCity(fCity) {
-  const data = await getWeather(fCity);
 
-  registerTemperature(data);
+async function registerCity(fCity) {
+  error.style.visibility = 'hidden';
+  const data = await getWeather(fCity).catch(() => {
+    error.style.visibility = 'visible';
+  });
+
+  registerTemperature(data, defaultMetric);
   registerName(data);
 
   const date = new Date(data.date);
@@ -109,11 +119,9 @@ async function registerCity(fCity) {
   registerHour(date);
   registerCondition(data);
   registerImage(data);
-  registerFeelsLike(data);
+  registerFeelsLike(data, defaultMetric);
   registerHumidity(data);
   registerWind(data);
-
-  console.log('dwadwadaw123123321321311wadawwad2adeq2e2qsaasdaawewqewqddweqwewqadwawadwaaw');
 }
 
 search.addEventListener('click', () => registerCity(town.value));
